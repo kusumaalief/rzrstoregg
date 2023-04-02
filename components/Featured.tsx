@@ -1,12 +1,14 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
-
+import { Swiper, SwiperSlide } from "swiper/react";
 import ThumbnailImage1 from "../public/assets/img/Thumbnail-1.png";
 import ThumbnailImage2 from "../public/assets/img/Thumbnail-2.png";
 import ThumbnailImage3 from "../public/assets/img/Thumbnail-3.png";
 import ThumbnailImage4 from "../public/assets/img/Thumbnail-4.png";
 import ThumbnailImage5 from "../public/assets/img/Thumbnail-5.png";
 import { type } from "os";
+
+import "swiper/css";
 
 type Props = {};
 
@@ -48,15 +50,23 @@ function Featured({}: Props) {
   return (
     <section>
       <h2>Our Featured Games in this Year</h2>
-      <div className="flex w-fit md:w-full bg-red-500 overflow-scroll md:justify-between my-4">
-        {featuredGames ? (
-          featuredGames.map(({src,gameName,type})=>(
-            <div className="relative h-[288px] w-[240px] overflow-hidden rounded-xl">
-              <Image src={src} alt={gameName} width={240}/>
-              
-            </div>
-        ))
-        ):null}
+      <div className="py-4 overflow-x-scroll">
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={1}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          {featuredGames
+            ? featuredGames.map(({ src, gameName, type }, i) => (
+                <SwiperSlide>
+                  <div className="relative h-full">
+                    <Image src={src} alt="gameName"/>
+                  </div>
+                </SwiperSlide>
+              ))
+            : null}
+        </Swiper>
       </div>
     </section>
   );

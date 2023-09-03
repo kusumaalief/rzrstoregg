@@ -1,17 +1,13 @@
-import React, { ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 
-type Props = {
-  children: ReactNode;
-  isPrimary: boolean;
-};
+interface IntButton extends React.HtmlHTMLAttributes<HTMLButtonElement> {
+  disabled?:boolean
+} 
 
-function Button({ children, isPrimary }: Props) {
+const Button:FC<IntButton>=({disabled,children,...props})=> {
+  
   return (
-    <button
-      className={
-        isPrimary ? `button primary text-lg` : `button secondary text-lg`
-      }
-    >
+    <button disabled>
       {children}
     </button>
   );

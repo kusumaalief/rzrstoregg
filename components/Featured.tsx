@@ -1,6 +1,9 @@
 import Image, { StaticImageData } from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, Scrollbar, A11y } from "swiper";
+
 import ThumbnailImage1 from "../public/assets/img/Thumbnail-1.png";
 import ThumbnailImage2 from "../public/assets/img/Thumbnail-2.png";
 import ThumbnailImage3 from "../public/assets/img/Thumbnail-3.png";
@@ -16,6 +19,11 @@ type FeaturedGames = {
   src: StaticImageData;
   gameName: string;
   type: string;
+};
+
+type Achievments = {
+  name: string;
+  value: string;
 };
 
 const featuredGames: FeaturedGames[] = [
@@ -46,27 +54,102 @@ const featuredGames: FeaturedGames[] = [
   },
 ];
 
+const achievments: Achievments[] = [
+  {
+    name: "Player Top Up",
+    value: "320K",
+  },
+  {
+    name: "Games Available",
+    value: "80",
+  },
+  {
+    name: "Player Satisfaction",
+    value: "99.9%",
+  },
+  {
+    name: "Rating Worldwide",
+    value: "4.76",
+  },
+];
+
 function Featured({}: Props) {
+  const [slideCount, setSlideCount] = useState(2);
+
+  useEffect(() => {
+    if (window.innerWidth < 620) {
+      setSlideCount(2);
+    }
+
+    if (window.innerWidth > 620 && window.innerWidth < 880) {
+      setSlideCount(3);
+    }
+
+    if (window.innerWidth > 880) {
+      setSlideCount(5);
+    }
+
+    const handleWindowResize = () => {
+      // setScreenWidth()
+      if (window.innerWidth < 620) {
+        setSlideCount(2);
+      }
+
+      if (window.innerWidth > 620 && window.innerWidth < 880) {
+        setSlideCount(3);
+      }
+
+      if (window.innerWidth > 880) {
+        setSlideCount(5);
+      }
+
+      console.log(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <section>
       <h2>Our Featured Games in this Year</h2>
-      <div className="py-4 overflow-x-scroll">
+      <div className="py-6">
         <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={10}
+          slidesPerView={slideCount}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
           {featuredGames
             ? featuredGames.map(({ src, gameName, type }, i) => (
-                <SwiperSlide>
-                  <div className="relative h-full">
-                    <Image src={src} alt="gameName"/>
+                <SwiperSlide key={i}>
+                  <div className="relative">
+                    <Image
+                      className="h-[340px] object-cover"
+                      src={src}
+                      alt={gameName}
+                    />
                   </div>
                 </SwiperSlide>
               ))
             : null}
         </Swiper>
+      </div>
+      <div className="flex py-6 mx-5 w-full justify-evenly">
+        {achievments &&
+          achievments.map(({ name, value }) => (
+            <div>
+              <h2>{value}</h2>
+              <p className="text-slate-500">{name}</p>
+            </div>
+          ))}
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import Featured from "@/components/Featured";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Story from "@/components/Story";
 import Head from "next/head";
 
 export default function Home() {
@@ -13,12 +14,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Header />
+      <Header />
       <div className="max-w-[2480px] overflow-hidden">
         <main>
           <Hero />
           <Services />
-          <Featured/>
+          <Featured />
+          <Story />
         </main>
       </div>
     </>

@@ -25,8 +25,8 @@ function Hero({}: Props) {
           </p>
         </div>
         <div className="mt-10 flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5">
-          <Button isPrimary={true}>Get Started</Button>
-          <Button isPrimary={false}>Learn More</Button>
+          <Button disabled >Get Started</Button>
+          <Button>Learn More</Button>
         </div>
       </div>
       <div className="flex-grow my-4 relative hidden md:block">

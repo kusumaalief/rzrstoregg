@@ -11,12 +11,16 @@ function Header({}: Props) {
   const [isMenuOpen, setisMenuOpen] = useState(false);
 
   const handleMenu = () => {
-    setisMenuOpen(!isMenuOpen)
+    setisMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="sticky top-0 left-0 right-0 shadow-md bg-transparent backdrop-blur-md">
-      <div className={`absolute ${isMenuOpen?'top-0':'-top-96'} left-0 right-0 transition-all ease-in-out duration-500`}>
+    <nav className="sticky top-0 left-0 right-0 shadow-md bg-transparent backdrop-blur-md z-20">
+      <div
+        className={`absolute ${
+          isMenuOpen ? "top-0" : "-top-96"
+        } left-0 right-0 transition-all ease-in-out duration-500`}
+      >
         <div className="relative">
           <ul className="text-xl flex flex-col justify-center items-center py-4 h-72 bg-white shadow-lg space-y-2">
             {navMenu &&
@@ -29,7 +33,10 @@ function Header({}: Props) {
                 </li>
               ))}
           </ul>
-          <GrClose onClick={handleMenu} className="absolute h-5 w-auto top-4 right-4" />
+          <GrClose
+            onClick={handleMenu}
+            className="absolute h-5 w-auto top-4 right-4"
+          />
         </div>
       </div>
       <div className="flex items-center justify-between p-4 md:p-6 ">

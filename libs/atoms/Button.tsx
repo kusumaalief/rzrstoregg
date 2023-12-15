@@ -1,7 +1,8 @@
 import React, { FC, ReactNode } from "react";
 
 interface IntButton extends React.HtmlHTMLAttributes<HTMLButtonElement> {
-  disabled?:boolean
+  disabled?:boolean,
+  isPrimary?:boolean
 } 
 
 const Button:FC<IntButton>=({disabled,children,...props})=> {

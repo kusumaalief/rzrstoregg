@@ -144,8 +144,8 @@ function Featured({}: Props) {
       </div>
       <div className="flex py-6 mx-5 w-full justify-evenly">
         {achievments &&
-          achievments.map(({ name, value }) => (
-            <div>
+          achievments.map(({ name, value },i) => (
+            <div key={i}>
               <h2>{value}</h2>
               <p className="text-slate-500">{name}</p>
             </div>

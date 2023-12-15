@@ -36,8 +36,8 @@ function Services({}: Props) {
       <h2>It's Really Easy to Become One Step Ahead against Other Player</h2>
       <div className="flex flex-col justify-between md:space-x-8 md:flex-row">
         {serviceItems
-          ? serviceItems.map(({ url, title, description }) => (
-              <div className="space-y-2 md:text-center my-8 p-6 shadow-md">
+          ? serviceItems.map(({ url, title, description },i) => (
+              <div key={i} className="space-y-2 md:text-center my-8 p-6 shadow-md">
                 <div className="relative">
                   <Image className="md:mx-auto" src={url} alt={description} />
                 </div>

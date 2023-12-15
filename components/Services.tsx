@@ -33,7 +33,7 @@ const serviceItems: ServiceItems[] = [
 function Services({}: Props) {
   return (
     <section className="flex flex-col items-center">
-      <h2>It's Really Easy to Become One Step Ahead against Other Player</h2>
+      <h2>Its Really Easy to Become One Step Ahead against Other Player</h2>
       <div className="flex flex-col justify-between md:space-x-8 md:flex-row">
         {serviceItems
           ? serviceItems.map(({ url, title, description },i) => (
